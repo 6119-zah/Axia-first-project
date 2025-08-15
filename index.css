@@ -19,12 +19,13 @@ h1 {
   width: 300px;
   /* height: fit-content; */
   box-sizing: content-box;
-  background-color: #E5DFD8;
+  background-color: #5A6168;
   border-style: none;
   border-radius: 9px;
   padding: 10px;
   text-align:center;
   box-shadow: 5px 5px 10px rgb(128, 124, 124);
+  color:#E5DFD8;
   /* display:flex;
   flex-direction:column; */
   
@@ -65,8 +66,8 @@ color:#5A6168;
 font-size:15px;
 }
 .profile-card-dark-mode{
-  background-color:#5A6168;
-  color:white !important ;
+  background-color:#E5DFD8;
+  color:#5A6168 !important ;
 }
 .search-bar-dark-mode{
   background-color: rgba(246, 242, 242, 0.918);

@@ -68,6 +68,7 @@
 
 const profilecardscontainer = document.querySelector(".profilecards-container");
 const searchInput = document.getElementById("searchInput");
+   let isDarkMode = false;
 fetch("https://jsonplaceholder.typicode.com/users")
   .then((res) => {
     return res.json();
@@ -77,7 +78,12 @@ fetch("https://jsonplaceholder.typicode.com/users")
       profilecardscontainer.innerHTML = "";
       users.forEach((user) => {
         const profileCardContent = document.createElement("div");
-        profileCardContent.className = "profile-card";
+        profileCardContent.classList.add("profile-card");
+
+        if(isDarkMode){
+          profileCardContent.classList.add("profile-card-dark-mode")
+        }
+
         profileCardContent.innerHTML = `
       <h2>${user.name}</h2>
       <p class="crucial-info">
@@ -99,32 +105,39 @@ fetch("https://jsonplaceholder.typicode.com/users")
       });
     }
     renderUsers(data);
+
     searchInput.addEventListener("input", () => {
       const value = searchInput.value.toLowerCase();
       const filteredUsers = data.filter((user) => {
         return (
-            user.name.toLowerCase().includes(value) ||
+          user.name.toLowerCase().includes(value) ||
           user.email.toLowerCase().includes(value) ||
           user.username.toLowerCase().includes(value)
         )
       });
        renderUsers(filteredUsers);
     }); 
+
     const darkmodeBtn = document.querySelector(".dark-mode-toggle");
+
     darkmodeBtn.addEventListener("click", () => {
-
+      isDarkMode = !isDarkMode;
       const profilecards = document.querySelectorAll('.profile-card');
-
-      const paraInfo = document.querySelectorAll(".profile-card p");
 
       profilecards.forEach((card) =>{
         card.classList.toggle("profile-card-dark-mode")
       });
 
-      if(document.body.style.backgroundColor = "#5A6168"){
+      if(darkmodeBtn.innerText === "Dark Mode"){
+        darkmodeBtn.innerText = "Light Mode"
+      } else{
+        darkmodeBtn.innerText = "Dark Mode";
+      }
+       const currentBg = getComputedStyle(document.body).backgroundColor;
+      if( currentBg === "rgb(90, 97, 104)"){
         document.body.style.backgroundColor= "";
       }else{
-        document.body.style.backgrounColor= "#5A6168";
+        document.body.style.backgroundColor= "#5A6168";
       }
     
     })
